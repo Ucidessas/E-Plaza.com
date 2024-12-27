@@ -68,12 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const sheetName1 = workbook1.SheetNames[0];
       const sheetData1 = XLSX.utils.sheet_to_json(workbook1.Sheets[sheetName1]);
 
-      propertyData1 = sheetData1;
-      properties = propertyData1;
       
-      loadPropertyCards(propertyData1);
-      //displayProperties(propertyData1);
-      alert("la data fue cargada directamente");
+      // Guardar los datos en la variable global y renderizar tarjetas
+      propertyData1 = sheetData;
+      products = propertyData1;
+      productoferta = products;
+      //alert("aqui funcionando para la asignacion de variables. parte 1");
+      displayProducts(products);
+      displayProducts1(productoferta)
+      //searchProducts();
+      //alert("la data fue cargada directamente");
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
     //alert("la data fue NO 1111 esogida directamente");
