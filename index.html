@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- Header con barra de búsqueda, carrito y login -->
+    <header>
+        <div class="logo">
+            <h1>E-Plaza.com</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Buscar Productos....  " />
+            <button class="boton" onclick="searchProducts(),searchProductsoferta()">
+                Buscar
+            </button>
+        </div>
+        <div class="cart">
+            <a href="#" onclick="toggleCart()">🛒 Carrito (<span id="cart-count">0</span>)</a>
+        </div>
+        <div class="user-login">
+            
+            
+                <span id="loginStatus" onclick="toggleLoginForm()">LOGIN</span>
+            
+            <!--<button onclick="toggleLoginForm()">logeo para pago</button>-->
+
+            <button onclick="window.location.href='login.html'";>Finalizar logueo</button>
+
+        </div>
+    </header>
+
+    <!--Formulario de login 
+    <div class="login-form" id="loginForm">
+        <h3>Loguear</h3>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Entrar</button>
+        <p id="loginStatus"></p>
+    </div>-->
+
+    <!-- Formulario de login -->
+    <div class="login-form" id="loginForm" style="display: none">
+        <h3>Login</h3>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button onclick="login11()">Login html</button>
+        <p id="loginStatus"></p>
+    </div>
+<!--
+    <section id="upload-section">
+        <h2>Subir Archivo de Propiedades</h2>
+        <input type="file" id="fileInput" accept=".xlsx, .xls" />
+      </section>
+
+     Categorías de productos de compra -->
+    <section class="categories">
+        <h2>Categorias</h2>
+        <ul>
+            <li><a href="#electronics">Electronica</a></li>
+            <li><a href="#fashion">Fashion</a></li>
+            <li><a href="#home">Home & Garden</a></li>
+            <li><a href="#sports">Sports</a></li>
+        </ul>
+    </section>
+
+   
+
+    <!-- Productos de venta -->
+    <section  class="products">
+        <h2>Productos de venta</h2>
+        <div class="product-grid">
+            <!-- Productos de venta -->
+            <div class="product-item" data-id="0">
+                <img src="https://via.placeholder.com/150" alt="Product 0" />
+                <h3>Busqueda</h3>
+                <p>$000.00</p>
+                <button onclick="searchProducts()">
+                    BUSCAR EN TODOS LOS PRODUCTOS
+                </button>
+            </div>
+            
+        </div>
+    </section>
+
+
+    <!-- Productos de venta (simulación de productos que se ponen en venta por usuarios) -->
+    <section id="product-list" class="products">
+        <h2>Producto de ventas usuarios oferta</h2>
+        <div id="productsCards" class="product-grid1">
+            <div class="product-item" id="product1" >
+                <img src="https://via.placeholder.com/150" alt="Product 1" />
+                <h3>Busqueda</h3>
+                <p>$000.00</p>
+                <button onclick="searchProductsoferta()">
+                    BUSCAR EN TODOS LOS PRODUCTOS OFERTA
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="product-detail" style="display: none;">
+        <button id="backButton" class="super-button">Volver a la lista</button>
+        <div id="productDetailContainer" class="virtual-tour">
+          <!-- Detalles de la propiedad seleccionada se mostrarán aquí -->
+        </div>
+      </section>
+       
+
+    <div class="cart-modal" id="cartModal" style="display: none">
+        <h3>Tu Carrito</h3>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="cart-total">0</span></p>
+        <button onclick="checkout()">Comprar</button>
+        <button onclick="toggleCart()">Cerrar</button>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 My Marketplace. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

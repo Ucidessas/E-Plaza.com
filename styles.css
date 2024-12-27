@@ -1,0 +1,537 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #333, #2980b9);
+    
+}
+
+.body1 {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #37a2fa, #2980b9);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+h2 {
+    font-size: 28px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Hacer el texto más grueso */
+    color: #000000; /* Color oscuro para el texto */
+    margin: 20px 0; /* Espaciado arriba y abajo */
+    text-align: center; /* Centrar el texto */
+    text-transform: uppercase; /* Convertir a mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    border-bottom: 2px solid #f0c14b; /* Línea debajo del título */
+    padding-bottom: 10px; /* Espaciado debajo del texto */
+
+
+    font-family: 'Pacifico', cursive; /* Fuente decorativa */
+    
+    
+    text-shadow: 
+        2px 2px 4px rgb(255, 255, 255), /* Sombra difusa */
+        -2px -2px 0 #3498db, /* Contorno superior izquierdo */
+        2px -2px 0 #3498db,  /* Contorno superior derecho */
+        -2px 2px 0 #3498db,  /* Contorno inferior izquierdo */
+        2px 2px 0 #3498db;   /* Contorno inferior derecho */
+   
+   
+}
+
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+
+header .logo {
+    font-size: 24px;
+}
+
+header .search-bar input {
+    padding: 15px 30px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.boton{
+    background: linear-gradient(90deg, #ffa136, #ffa323);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+header .cart a {
+    color: white;
+    text-decoration: none;
+}
+
+header .user-login {
+    color: white;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+
+.container {
+    width: 400px;
+    height: 500px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+}
+
+.form-box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    border-radius: 30px;
+}
+
+.toggle-btn {
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    font-weight: 500;
+}
+
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(90deg, #8e44ad, #2980b9);
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.social-icons {
+    margin: 30px 0;
+}
+
+.social-icons img {
+    width: 40px;
+    margin: 0 12px;
+    cursor: pointer;
+}
+
+.input-group {
+    top: 150px;
+    position: absolute;
+    width: 280px;
+    transition: 0.5s;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px 0;
+    margin: 10px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.check-box {
+    margin: 30px 10px 30px 0;
+}
+
+.submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+    background: linear-gradient(90deg, #8e44ad, #2980b9);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 30px;
+}
+
+#login {
+    left: 50px;
+}
+
+#register {
+    left: 450px;
+}
+
+
+
+
+
+
+.categories {
+    padding: 20px;
+    background: linear-gradient(3deg, #333, #74c7ff);
+}
+
+.categories ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.categories ul li a {
+    text-decoration: none;
+    color: #f0f0f0;
+}
+
+.products {
+    padding: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.product-grid1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-item {
+    padding: 20px;
+    border: 1px solid #ddd;
+    text-align: center;
+    display: flex; /* Usa Flexbox para centrar contenido */
+    flex-direction: column; /* Asegura que los elementos dentro estén en columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    height: 400px; /* Define una altura fija para uniformar el tamaño de los contenedores */
+}
+
+.product-item img {
+    width: 100%; /* Asegura que la imagen se ajuste al ancho disponible */
+    max-width: 300px; /* Limita el ancho máximo */
+    height: 100%; /* Hace que ocupe toda la altura disponible */
+    max-height: 200px; /* Limita la altura máxima */
+    object-fit: cover; /* Ajusta la imagen para llenar el área definida */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); /* Importar fuente estilizada */
+
+.product-item h3 {
+    margin: 10px 0;
+    
+
+    font-family: 'Pacifico', cursive; /* Fuente decorativa */
+    font-size: 17px; /* Tamaño de la letra */
+    color: white; /* Color interno de la letra */
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.4), /* Sombra difusa */
+        -2px -2px 0 #3498db, /* Contorno superior izquierdo */
+        2px -2px 0 #3498db,  /* Contorno superior derecho */
+        -2px 2px 0 #3498db,  /* Contorno inferior izquierdo */
+        2px 2px 0 #3498db;   /* Contorno inferior derecho */
+    text-transform: uppercase; /* Convierte la letra en mayúscula */
+    font-weight: bold; /* Asegura que la letra sea gruesa */
+    letter-spacing: 2px; /* Espaciado entre caracteres */
+
+  }
+  
+  .product-item p {
+    color: #ffffff;
+  }
+  
+  .product-item button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .product-item button:hover {
+    background-color: #45a049;
+  }
+
+footer {
+    margin-top: auto;
+    background-color: #023770;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.login-form {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+.login-form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+
+.cart-modal {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.cart-modal h3 {
+    margin-top: 0;
+}
+
+.cart-modal ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-modal ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-modal p {
+    font-weight: bold;
+}
+
+
+
+
+#upload-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+
+  #propertyDetailContainer {
+    padding: 20px;
+  }
+
+
+/*esto es para la descripcion de las tarjetas.
+  /////////////////////////////////////////////////////////////////////*/
+
+ .virtual-tour {
+    align-items: center;
+      padding: 30px 10px; /* Espaciado interno */
+      background: linear-gradient(135deg, #4f28ff, #7200f5); /* Fondo degradado atractivo */
+      text-align: center; /* Centrar texto */
+      border-radius: 30px;
+    }
+    
+    .virtual-tour iframe {
+      border: none;
+      padding: 30px 10px; /* Espaciado interno */
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      
+    }
+    
+    .virtual-tour img {
+      /*width: 300px;
+      height: 300px;*/
+      width: 20%; /* Imagen ocupa todo el ancho */
+      height: auto; /* Mantener la proporción */
+      object-fit: cover;
+      border-radius: 20px;
+      padding: 10px 10px; /* Espaciado interno */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      align-items: center;
+    }
+    .virtual-tour img:hover {
+      transform: scale(2); /* Aumenta el tamaño al 200% */
+      box-shadow: 0 100px 160px rgba(0, 0, 0, 0.3);
+      z-index: 20; /* Coloca la imagen agrandada por encima de las demás */
+    }
+    
+    
+
+
+
+
+    
+  /* Super Button Styles */
+.super-button {
+    background: linear-gradient(90deg, #ff6f61, #ffc371);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    
+  }
+  
+  .super-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    z-index: 0;
+    transition: width 0.4s ease, height 0.4s ease;
+  }
+  
+  .super-button:hover {
+    background: linear-gradient(90deg, #ff6f61, #ff5733);
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .super-button:hover::before {
+    width: 300%;
+    height: 300%;
+  }
+  
+  .super-button:active {
+    transform: scale(1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Text styles to avoid being affected by ::before */
+  .super-button span {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  
+  /* Estilo general del contenedor del producto */
+  .product-description {
+    background: linear-gradient(135deg, #38ff63, #5eaefa); /* Fondo degradado atractivo */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    text-align: center;
+    color: #fff; /* Texto blanco para contrastar */
+    max-width: 400px;
+    margin: 20px auto; /* Centrado automático */
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  /* Efecto hover para destacar aún más */
+  .product-description:hover {
+    transform: scale(1.05); /* Efecto de zoom */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Incremento de la sombra */
+  }
+  
+
+
+  /* Estilo del título */
+  .product-title {
+    font-size: 1.8rem; /* Tamaño grande para destacar */
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px; /* Espaciado elegante */
+    text-transform: uppercase; /* Texto en mayúsculas para impacto */
+    color: #ffeb3b; /* Amarillo para destacar */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Sombra para resaltar */
+  }
+  
+  /* Estilo del texto de descripción */
+  .product-text {
+    font-size: 1.3rem;
+    line-height: 1.6; /* Mejora la legibilidad */
+    margin-bottom: 20px;
+    color: #16102e; /* Tono suave para complementar el fondo */
+    
+  }
+
