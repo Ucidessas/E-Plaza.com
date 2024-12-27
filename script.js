@@ -70,14 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       
       // Guardar los datos en la variable global y renderizar tarjetas
-      propertyData1 = sheetData;
+      propertyData1 = sheetData1;
       products = propertyData1;
       productoferta = products;
       //alert("aqui funcionando para la asignacion de variables. parte 1");
       displayProducts(products);
-      displayProducts1(productoferta)
+      displayProducts1(productoferta);
       //searchProducts();
-      //alert("la data fue cargada directamente");
+      alert("la data fue cargada directamente");
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
     //alert("la data fue NO 1111 esogida directamente");
