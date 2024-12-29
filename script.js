@@ -55,6 +55,7 @@ const users = [
 
 
 let propertyData1 = [];
+let tenderoData1 = [];
 let products = [{ id: 1, name: "ofSmartphone", price: 500 },];
 let productoferta =[{ id: 1, name: "ofSmartphone", price: 500 },];
 
@@ -73,30 +74,30 @@ document.addEventListener("DOMContentLoaded", () => {
       
       loadPropertyCards(propertyData1);
       //displayProperties(propertyData1);
-      //alert("la data fue cargada directamente");
+      alert("la data fue cargada directamente1");
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
-    //alert("la data fue NO 1111 esogida directamente");
+    alert("la data fue NO 1111 esogida directamente");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch("./tenderos.xlsx") // Archivo en la carpeta raíz
       .then((response) => response.arrayBuffer())
-      .then((data1) => {
-        const workbook1 = XLSX.read(new Uint8Array(data1), { type: "array" });
-        const sheetName1 = workbook1.SheetNames[0];
-        const sheetData1 = XLSX.utils.sheet_to_json(workbook1.Sheets[sheetName1]);
+      .then((data2) => {
+        const workbook = XLSX.read(new Uint8Array(data2), { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
   
         // Guardar los datos en la variable global y renderizar tarjetas
         tenderoData1 = sheetData;
         //products = propertyData1;
         //productoferta = products;
-        //alert("aqui funcionando para la asignacion de variables. parte 1");
+        alert("aqui funcionando para la asignacion de variables. parte 1");
         displaytenderos(tenderoData1);
         //searchProducts();
       })
       .catch((error) => console.error("Error al cargar el archivo:", error));
-      //alert("la data fue NO 1111 esogida directamente");
+      alert("la data fue NO 2222 esogida directamente");
   });
 
 
