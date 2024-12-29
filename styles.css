@@ -48,6 +48,18 @@ h2 {
    
 }
 
+h4 {
+  color: #4CAF50;
+  font-size: 2.8rem; /* Tamaño grande para destacar */
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 1px; /* Espaciado elegante */
+  text-transform: uppercase; /* Texto en mayúsculas para impacto */
+  /*color: #ffeb3b;  Amarillo para destacar */
+  text-shadow: 2px 2px 5px rgb(255, 255, 255); /* Sombra para resaltar */
+  text-align: center;
+}
+
 
 
 
@@ -238,6 +250,11 @@ header .user-login {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
+.product-grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
 
 .product-item {
     padding: 20px;
@@ -379,6 +396,13 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+  #upload-section1 {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
 
   .cards-container {
     display: grid;
@@ -399,10 +423,18 @@ footer {
  .virtual-tour {
     align-items: center;
       padding: 30px 10px; /* Espaciado interno */
-      background: linear-gradient(135deg, #4f28ff, #7200f5); /* Fondo degradado atractivo */
+      background: linear-gradient(135deg, #4f28ff, #6600db); /* Fondo degradado atractivo */
       text-align: center; /* Centrar texto */
       border-radius: 30px;
     }
+
+    .virtual-tour1 {
+      align-items: center;
+        padding: 30px 10px; /* Espaciado interno */
+        background: linear-gradient(180deg, #333, #2980b9);
+        text-align: center; /* Centrar texto */
+        border-radius: 30px;
+      }
     
     .virtual-tour iframe {
       border: none;
@@ -535,3 +567,88 @@ footer {
     
   }
 
+
+
+  
+  .contact-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+  }
+  
+  .contact-section form input,
+  .contact-section form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .contact-section form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .contact-section form button:hover {
+    background-color: #45a049;
+  }
+  
+
+
+
+  /* Contenedor del menú */
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+/* Estilos de los enlaces */
+.menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  padding: 10px 15px;
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover */
+.menu a:hover {
+  color: #ff6347; /* Cambia el color del texto */
+}
+
+/* Estilos de los spans */
+.menu a span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Subrayado animado */
+.menu a:after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #ff6347;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+/* Hover animado */
+.menu a:hover:after {
+  transform: scaleX(1);
+  transform-origin: left;
+}

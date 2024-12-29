@@ -68,24 +68,41 @@ document.addEventListener("DOMContentLoaded", () => {
       const sheetName1 = workbook1.SheetNames[0];
       const sheetData1 = XLSX.utils.sheet_to_json(workbook1.Sheets[sheetName1]);
 
-      
-      // Guardar los datos en la variable global y renderizar tarjetas
       propertyData1 = sheetData1;
-      products = propertyData1;
-      productoferta = products;
-      //alert("aqui funcionando para la asignacion de variables. parte 1");
-      displayProducts(products);
-      displayProducts1(productoferta);
-      //searchProducts();
-      alert("la data fue cargada directamente");
+      properties = propertyData1;
+      
+      loadPropertyCards(propertyData1);
+      //displayProperties(propertyData1);
+      //alert("la data fue cargada directamente");
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
     //alert("la data fue NO 1111 esogida directamente");
 });
 
-/*
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("./tenderos.xlsx") // Archivo en la carpeta raíz
+      .then((response) => response.arrayBuffer())
+      .then((data1) => {
+        const workbook1 = XLSX.read(new Uint8Array(data1), { type: "array" });
+        const sheetName1 = workbook1.SheetNames[0];
+        const sheetData1 = XLSX.utils.sheet_to_json(workbook1.Sheets[sheetName1]);
+  
+        // Guardar los datos en la variable global y renderizar tarjetas
+        tenderoData1 = sheetData;
+        //products = propertyData1;
+        //productoferta = products;
+        //alert("aqui funcionando para la asignacion de variables. parte 1");
+        displaytenderos(tenderoData1);
+        //searchProducts();
+      })
+      .catch((error) => console.error("Error al cargar el archivo:", error));
+      //alert("la data fue NO 1111 esogida directamente");
+  });
+
+
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
 //que sollo puede ser llamado cuando se utiliza. 
+/*
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -115,6 +132,39 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
   }
  // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
 });
+
+
+// este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
+//que sollo puede ser llamado cuando se utiliza. 
+document.getElementById("fileInput1").addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      
+      const reader = new FileReader();
+  
+      reader.onload = (e) => {
+          
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+  
+        // Convertir los datos del archivo Excel a JSON
+        const sheetName = workbook.SheetNames[0];
+        const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+  
+        // Guardar los datos en la variable global y renderizar tarjetas
+        tenderoData1 = sheetData;
+        //products = propertyData1;
+        //productoferta = products;
+        //alert("aqui funcionando para la asignacion de variables. parte 1");
+        displaytenderos(tenderoData1);
+        //searchProducts();
+      };
+  
+      reader.readAsArrayBuffer(file);
+     // alert("aqui funcionando para la asignacion de variables parte 2.");
+    }
+   // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
+  });
 */
 
 
@@ -286,6 +336,19 @@ function searchProductsoferta() {
     displayProducts1(filteredProducts);
 }
 
+// Función para buscar productos
+function searchtenderos() {
+    // Obtener el término de búsqueda del input
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    
+    // Filtrar los productos que coinciden con el término de búsqueda
+    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+
+    //alert("aqui funcionando el filtrado");
+    // Mostrar los productos filtrados
+    displaytenderos(filteredProducts);
+}
+
 
 
 var loginForm = document.getElementById("login");
@@ -388,88 +451,6 @@ function displayProducts1(data) {
   
   
               <div class="product-description">
-                  <h2 class="product-title">${property.title}</h2>
-                  <p class="product-text">${property.description}</p>
-                  
-              </div>
-  
-               <div class="virtual-tour">
-                  <h3>Recorrido Virtual en ensamble</h3>
-                  
-                      <img src="${property.foto1}" alt="Imagen 1">
-                      <img src="${property.foto2}" alt="Imagen 2">
-                  
-                      <img src="${property.foto3}" alt="Imagen 3">
-                  
-                      <img src="${property.foto4}" alt="Imagen 4">
-                  
-              
-                  
-              </div>
-              
-          </div>
-     </div>
-  
-    `;
-  
-    // Mostrar la sección de detalles y ocultar la lista
-    detailSection.style.display = "block";
-    listSection.style.display = "none";
-  }
-
-
-
-/*
-function displayProducts1(productList) {
-    const productGrid = document.querySelector('.product-grid1');
-   
-    // Limpiar los productos actuales en la cuadrícula
-    productGrid.innerHTML = '';
-    
-    // Mostrar los productos filtrados
-    //alert("la data va en el proceso 2");
-    if (productList.length > 0) {
-        productList.forEach(product => {
-
-            
-            // Validar y convertir el precio a un número
-            const price = parseFloat(product.price) || 0; // Si no es válido, se asigna 0
-            const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
-
-            const productItem = `
-                <div class="product-item" data-id="${product.id}">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>${formattedPrice}</p>
-                    <button onclick="addToCart(${product.id}, '${product.name}', ${price})">Add to Cart</button>
-                </div>
-            `;
-            productGrid.innerHTML += productItem;
-            
-        });
-    } else {
-        productGrid.innerHTML = '<p>ningún producto encontrado.</p>';
-    }
-}
-
-/*
-// Mostrar los detalles de una propiedad
-function showPropertyDetail(property) {
-    const detailSection = document.getElementById("property-detail");
-    const listSection = document.getElementById("property-list");
-    const detailContainer = document.getElementById("propertyDetailContainer");
-    alert("la data va en el proceso 2,4");
-
-    // Llenar el detalle con la información de la propiedad
-    detailContainer.innerHTML = `
-  
-       <div class="virtual-tour">
-                  <h3>Propiedad</h3>
-                  <img src="${property.image}" alt="Foto portada propiedad">
-              </div>
-  
-  
-              <div class="product-description">
                   <h2 class="product-title">${property.name}</h2>
                   <p class="product-text">${property.description}</p>
                   
@@ -484,47 +465,289 @@ function showPropertyDetail(property) {
                       <img src="${property.foto3}" alt="Imagen 3">
                   
                       <img src="${property.foto4}" alt="Imagen 4">
-                 
+                  
               
                   
               </div>
-  
-             
-  
-              <div class="contact-section">
-                  <h4>Contactar al Vendedor</h4>
-                  <form>
-                      <input type="text" placeholder="Tu Nombre" required>
-                      <input type="email" placeholder="Tu Correo" required>
-                      <input type="number" placeholder="Tu Telefono" required>
-                      <input type="text" placeholder="Asesor" required>
-                      <textarea placeholder="Tu Mensaje"></textarea>
-                      <button type="submit" class="product-button">Enviar</button>
-                  </form>
-              </div>
+              
           </div>
      </div>
   
     `;
-    alert("la data va en el proceso 2,5");
+  
     // Mostrar la sección de detalles y ocultar la lista
     detailSection.style.display = "block";
     listSection.style.display = "none";
   }
-*/
+
+
+  function displaytenderos(data) {
+    const container = document.getElementById("tenderoCards");
+    container.innerHTML = ""; // Limpiar contenido previo
+
+    
+  
+    data.forEach((products3) => {
+     // const price = parseFloat(products.price) || 0; // Si no es válido, se asigna 0
+     // const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+      
+      const card2 = document.createElement("div");
+      //card.classList.add("product-item");
+      card2.innerHTML = `
+        <div class="product-item" data-id="${products3.id}">
+                    <img src="${products3.image}" alt="${products3.name}">
+                    <h3>${products3.name}</h3>
+                    <p>${products3.location}</p>
+                </div>
+      `;
+      // Agregar evento de clic para mostrar los detalles
+      card2.addEventListener("click", () => showtenderoDetail(products3));
+      container.appendChild(card2);
+    });
+  }
+
+
+
+  // Mostrar los detalles de un tendero
+  function showtenderoDetail(property) {
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+
+
+
+
+    const price = parseFloat(products.price) || 0; // Si no es válido, se asigna 0
+    const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+  
+    // Llenar el detalle con la información de la propiedad
+    detailContainer.innerHTML = `
+  
+       <div class="virtual-tour">
+                  <h3>TENDERO</h3>
+                  <img src="${property.image}" alt="Foto Portada Tienda">
+              </div>
+  
+  
+              <div class="product-description">
+                  <h2 class="product-title">${property.name}</h2>
+                  <p class="product-text">${property.description}</p>
+                  
+              </div>
+  
+               <div class="virtual-tour">
+                  <h3>Recorrido Virtual en ensamble</h3>
+
+                  
+                  
+                    
+                <div class="product-item" data-id="${products.id}">
+                    <img src="${products.image}" alt="${products.name}">
+                    <h3>${products.name}</h3>
+                    <p>${formattedPrice}</p>
+                    <br>
+                    <button onclick="addToCart(${products.id}, '${products.name}', ${price})">Add to Cart</button>
+                </div>
+                  
+              </div>
+              
+          </div>
+     </div>
+  
+    `;
+  
+    // Mostrar la sección de detalles y ocultar la lista
+    detailSection.style.display = "block";
+    listSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection1.style.display = "none";
+    listSection2.style.display = "none";
+  }
+
+
+
+
 
 
   // Volver a la lista de propiedades
 document.getElementById("backButton").addEventListener("click", () => {
-    
+
     const detailSection = document.getElementById("product-detail");
     const listSection = document.getElementById("product-list");
   
     detailSection.style.display = "none";
     //listSection.style.display = "block";
     listSection.style.display = 'block'; // 
+
     
   });
+
+  document.getElementById("backButton1").addEventListener("click", () => {
+    
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+  
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "block";
+    listSection1.style.display = "block";
+    listSection2.style.display = "block";
+    
+  });
+
+  
+
+
+  function sendMail() {
+    var params = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      number: document.getElementById("numero").value,
+      asesor: document.getElementById("asesor").value,
+      mensaje: document.getElementById("mensaje").value,
+    };
+  
+    const serviceID = "service_c8zuhnf";
+    const templateID = "template_99q1mlz";
+  
+      emailjs.send(serviceID, templateID, params)
+      .then(res=>{
+          document.getElementById("name").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("numero").value = "";
+          document.getElementById("asesor").value = "";
+          document.getElementById("mensaje").value = "";
+          console.log(res);
+          alert("Your message sent successfully!!")
+  
+      })
+      .catch(err=>console.log(err));
+  
+  }
+
+
+
+
+  //aqui el menu de muestra y seleccion
+
+  function inicio(){
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+    const contactos = document.getElementById("contacto");
+  
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "block";
+    listSection1.style.display = "block";
+    listSection2.style.display = "block";
+    detailContainer.style.display= "none";
+    contactos.style.display= "block";
+
+
+
+  }
+
+  function productventa(){
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+    const contactos = document.getElementById("contacto");
+  
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "none";
+    listSection1.style.display = "block";
+    listSection2.style.display = "none";
+    detailContainer.style.display= "none";
+    contactos.style.display= "none";
+  }
+  function producoferta(){
+
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+    const contactos = document.getElementById("contacto");
+  
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "none";
+    listSection1.style.display = "none";
+    listSection2.style.display = "block";
+    detailContainer.style.display= "none";
+    contactos.style.display= "none";
+
+  }
+
+  
+  function tenderos(){
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+    const contactos = document.getElementById("contacto");
+  
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "block";
+    listSection1.style.display = "none";
+    listSection2.style.display = "none";
+    detailContainer.style.display= "none";
+    contactos.style.display= "none";
+  }
+
+  function contacto(){
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+    const contactos = document.getElementById("contacto");
+  
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "none";
+    listSection1.style.display = "none";
+    listSection2.style.display = "none";
+    detailContainer.style.display= "none";
+    contactos.style.display= "block";
+  }
 
 
 

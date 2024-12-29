@@ -52,28 +52,43 @@
         <button onclick="login11()">Login html</button>
         <p id="loginStatus"></p>
     </div>
-<!--
+
     <section id="upload-section">
         <h2>Subir Archivo de Propiedades</h2>
         <input type="file" id="fileInput" accept=".xlsx, .xls" />
       </section>
 
-     Categorías de productos de compra -->
+    <!-- Categorías de productos de compra -->
     <section class="categories">
+
         <h2>Categorias</h2>
+        <nav class="menu">
+            <ul>
+                <li><a onclick="inicio()"><span>busqueda</span></a></li>
+                <li><a onclick="productventa()"><span>Productos de Venta</span></a></li>
+                <li><a onclick="producoferta()"><span>Productos de Oferta</span></a></li>
+                <li><a onclick="tenderos()"><span>Tenderos</span></a></li>
+                <li><a onclick="contacto()"><span>Contacto</span></a></li>
+            </ul>
+        </nav>
+
+<!--
+        
         <ul>
-            <li><a href="#electronics">Electronica</a></li>
-            <li><a href="#fashion">Fashion</a></li>
-            <li><a href="#home">Home & Garden</a></li>
-            <li><a href="#sports">Sports</a></li>
+            <li><a href="#product-list0">Productos de Venta </a></li>
+            <li><a href="#product-list">Productos de Oferta</a></li>
+            <li><a href="#tendero-list">Perfil del Tendero</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><span id="mostra" onclick="mostrar1()">mostrar 1</span></li>
         </ul>
+        -->
     </section>
 
    
 
     <!-- Productos de venta -->
-    <section  class="products">
-        <h2>Productos de venta</h2>
+    <section  id="product-list0" class="products">
+        <h2>Productos de Venta</h2>
         <div class="product-grid">
             <!-- Productos de venta -->
             <div class="product-item" data-id="0">
@@ -91,7 +106,7 @@
 
     <!-- Productos de venta (simulación de productos que se ponen en venta por usuarios) -->
     <section id="product-list" class="products">
-        <h2>Producto de ventas usuarios oferta</h2>
+        <h2>Productos de Ventas usuarios Ofertas</h2>
         <div id="productsCards" class="product-grid1">
             <div class="product-item" id="product1" >
                 <img src="https://via.placeholder.com/150" alt="Product 1" />
@@ -119,12 +134,70 @@
         <button onclick="checkout()">Comprar</button>
         <button onclick="toggleCart()">Cerrar</button>
     </div>
+
+
+    <section id="upload-section1">
+        <h2>Subir Archivo de tenderos</h2>
+        <input type="file" id="fileInput1" accept=".xlsx, .xls" />
+      </section>
+
+
+     <!-- perfiles de venta tenderos o vendedor.  -->
+     <section id="tendero-list" class="products">
+        <h2>Perfiles de los vendedores</h2>
+        <div id="tenderoCards" class="product-grid2">
+            <!-- Productos de venta -->
+            <div class="product-item" data-id="3">
+                <img src="https://via.placeholder.com/150" alt="tendero 1" />
+                <h3>Busqueda</h3>
+                <p>$000.00</p>
+                <button onclick="searchtenderos()">
+                    BUSCAR EN TODOS LOS TENDEROS
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="tendero-detail" style="display: none;">
+        <button id="backButton1" class="super-button">Volver a la lista de Tenderos</button>
+        <div id="tenderoDetailContainer" class="virtual-tour">
+          <!-- Detalles de la propiedad seleccionada se mostrarán aquí -->
+        </div>
+      </section>
+
+
+      <section id="contacto" class="virtual-tour1">
+            
+        <div class="contact-section" >
+          <h4>Contactar al Creador</h4>
+          <form>
+              <input type="text" id="name" placeholder="Tu Nombre" required>
+              <input type="email" id="email" placeholder="Tu Correo" required>
+              <input type="number" id="numero" placeholder="Tu Telefono" required>
+              <input type="text" id="asesor" placeholder="Nombre de la Tienda o Local" required>
+              <textarea id="mensaje" placeholder="Tu Mensaje y que te interesa compartirnos"></textarea>
+          </form>
+      
+              <button class="super-button" onclick="sendMail()">Submit</button>
+          
+            </div>
+      
+    </section>
     
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 My Marketplace. All rights reserved.</p>
     </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+     (function () {
+          emailjs.init("j02XYaADe0cDpu3M2");
+                })();
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="script.js"></script>
 </body>
