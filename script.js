@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => console.error("Error al cargar el archivo:", error));
     alert("la data fue NO 1111 esogida directamente");
 });
-
+/*
 document.addEventListener("DOMContentLoaded", () => {
     fetch("./tenderos.xlsx") // Archivo en la carpeta raíz
       .then((response) => response.arrayBuffer())
