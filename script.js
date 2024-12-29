@@ -69,17 +69,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const sheetName1 = workbook1.SheetNames[0];
       const sheetData1 = XLSX.utils.sheet_to_json(workbook1.Sheets[sheetName1]);
 
+      // Guardar los datos en la variable global y renderizar tarjetas
       propertyData1 = sheetData1;
-      properties = propertyData1;
-      
-      loadPropertyCards(propertyData1);
-      //displayProperties(propertyData1);
-      alert("la data fue cargada directamente1");
+      products = propertyData1;
+      productoferta = products;
+      //alert("aqui funcionando para la asignacion de variables. parte 1");
+      displayProducts(products);
+      //searchProducts();;
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
     alert("la data fue NO 1111 esogida directamente");
 });
-/*
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch("./tenderos.xlsx") // Archivo en la carpeta raíz
       .then((response) => response.arrayBuffer())
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tenderoData1 = sheetData;
         //products = propertyData1;
         //productoferta = products;
-        alert("aqui funcionando para la asignacion de variables. parte 1");
+        //alert("aqui funcionando para la asignacion de variables. parte 1");
         displaytenderos(tenderoData1);
         //searchProducts();
       })
