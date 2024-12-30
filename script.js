@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //searchProducts();;
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
-    alert("la data fue NO 1111 esogida directamente");
+    //alert("la data fue NO 1111 esogida directamente");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -98,13 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
         //searchProducts();
       })
       .catch((error) => console.error("Error al cargar el archivo:", error));
-      alert("la data fue NO 2222 esogida directamente");
+      //alert("la data fue NO 2222 esogida directamente");
   });
 
 
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
 //que sollo puede ser llamado cuando se utiliza. 
-/*
+
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -167,7 +167,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
     }
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
-*/
+
 
 
 // Variables globales para el carrito
