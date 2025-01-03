@@ -52,12 +52,12 @@
         <button onclick="login11()">Login html</button>
         <p id="loginStatus"></p>
     </div>
-
+<!--
     <section id="upload-section">
         <h2>Subir Archivo de Propiedades</h2>
         <input type="file" id="fileInput" accept=".xlsx, .xls" />
       </section>
-
+-->
     <!-- Categorías de productos de compra -->
     <section class="categories">
 
@@ -89,7 +89,7 @@
     <!-- Productos de venta -->
     <section  id="product-list0" class="products">
         <h2>Productos de Venta</h2>
-        <div class="product-grid">
+        <div id="productsCards0"class="product-grid">
             <!-- Productos de venta -->
             <div class="product-item" data-id="0">
                 <img src="https://via.placeholder.com/150" alt="Product 0" />
@@ -134,19 +134,18 @@
         <button onclick="checkout()">Comprar</button>
         <button onclick="toggleCart()">Cerrar</button>
     </div>
-
+<!--
 
     <section id="upload-section1">
         <h2>Subir Archivo de tenderos</h2>
         <input type="file" id="fileInput1" accept=".xlsx, .xls" />
       </section>
+-->
 
-
-     <!-- perfiles de venta tenderos o vendedor.  -->
+     <!-- perfiles de venta tenderos o vendedor.      -->
      <section id="tendero-list" class="products">
         <h2>Perfiles de los vendedores</h2>
         <div id="tenderoCards" class="product-grid2">
-            <!-- Productos de venta -->
             <div class="product-item" data-id="3">
                 <img src="https://via.placeholder.com/150" alt="tendero 1" />
                 <h3>Busqueda</h3>
@@ -159,12 +158,30 @@
     </section>
 
 
-    <section id="tendero-detail" style="display: none;">
-        <button id="backButton1" class="super-button">Volver a la lista de Tenderos</button>
-        <div id="tenderoDetailContainer" class="virtual-tour">
-          <!-- Detalles de la propiedad seleccionada se mostrarán aquí -->
+<!--
+
+<section id="tenderoCards1" class="container1" >
+    <h2>Perfiles de los vendedores</h2>
+        <div id="tenderoCards2" class="product-grid3">
+            <div class="product-item" data-id="4">
+                <img src="https://via.placeholder.com/150" alt="tendero 1" />
+                <h3>Busqueda</h3>
+                <p>$000.00</p>
+                <button onclick="searchtenderos()">
+                    BUSCAR EN TODOS LOS TENDEROS
+                </button>
+            </div>
         </div>
-      </section>
+</section>
+-->
+
+<section id="tendero-detail" style="display: none;">
+    <button id="backButton1" class="super-button">Volver a la lista de Tenderos</button>
+    <div id="tenderoDetailContainer" class="virtual-tour">
+      <!-- Detalles de la propiedad seleccionada se mostrarán aquí -->
+    </div>
+  </section>
+
 
 
       <section id="contacto" class="virtual-tour1">

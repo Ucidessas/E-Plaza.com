@@ -55,9 +55,9 @@ const users = [
 
 
 let propertyData1 = [];
-let tenderoData1 = [];
-let products = [{ id: 1, name: "ofSmartphone", price: 500 },];
-let productoferta =[{ id: 1, name: "ofSmartphone", price: 500 },];
+let tenderoData1 = [{ id: 1, name: "tenderos  de prueba", price: 1000 },];
+let products = [{ id: 1, name: "iniciando", price: 1000 },];
+let productoferta =[{ id: 1, name: "iniciando oferta", price: 1000 },];
 
 // Cargar el archivo Excel al cargar la página
 
@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
       productoferta = products;
       //alert("aqui funcionando para la asignacion de variables. parte 1");
       displayProducts(products);
+      searchProductsoferta();
       //searchProducts();;
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
@@ -95,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //productoferta = products;
         //alert("aqui funcionando para la asignacion de variables. parte 1");
         displaytenderos(tenderoData1);
+         //displaytenderos1(tenderoData1);
         //searchProducts();
       })
       .catch((error) => console.error("Error al cargar el archivo:", error));
@@ -103,8 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
-//que sollo puede ser llamado cuando se utiliza. 
-
+/*/que sollo puede ser llamado cuando se utiliza. 
+/
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -126,6 +128,7 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
       productoferta = products;
       //alert("aqui funcionando para la asignacion de variables. parte 1");
       displayProducts(products);
+      searchProductsoferta();
       //searchProducts();
     };
 
@@ -159,6 +162,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
         //productoferta = products;
         //alert("aqui funcionando para la asignacion de variables. parte 1");
         displaytenderos(tenderoData1);
+         //displaytenderos1(tenderoData1);
         //searchProducts();
       };
   
@@ -168,7 +172,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
 
-
+*/
 
 // Variables globales para el carrito
 let cart = [];
@@ -329,10 +333,10 @@ function searchProducts() {
 }
 function searchProductsoferta() {
     // Obtener el término de búsqueda del input
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const searchTerm = ["si"];
     
     // Filtrar los productos que coinciden con el término de búsqueda
-    const filteredProducts = productoferta.filter(product1 => product1.name.toLowerCase().includes(searchTerm));
+    const filteredProducts = productoferta.filter(product1 => product1.oferta.toLowerCase().includes(searchTerm));
 
     // Mostrar los productos filtrados
     displayProducts1(filteredProducts);
@@ -344,11 +348,12 @@ function searchtenderos() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     
     // Filtrar los productos que coinciden con el término de búsqueda
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+    const filteredProducts = tenderoData1.filter(product => product.name.toLowerCase().includes(searchTerm));
 
     //alert("aqui funcionando el filtrado");
     // Mostrar los productos filtrados
     displaytenderos(filteredProducts);
+     //displaytenderos1(filteredProducts);
 }
 
 
@@ -374,26 +379,31 @@ function login1() {
 
 
 
-
+// mistrar para todos los productos sin importar que sean de oferta o no. 
 
 function displayProducts(productList) {
-    const productGrid = document.querySelector('.product-grid');
+    //const productGrid = document.querySelector('.product-grid');
+    const container = document.getElementById("productsCards0");
 
    // const container = document.getElementById("propertyCards");
 
-    
+   container.innerHTML = '';
     
     // Limpiar los productos actuales en la cuadrícula
-    productGrid.innerHTML = '';
+    //productGrid.innerHTML = '';
     
     // Mostrar los productos filtrados
     if (productList.length > 0) {
+
+
         productList.forEach(product => {
             // Validar y convertir el precio a un número
             const price = parseFloat(product.price) || 0; // Si no es válido, se asigna 0
             const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
-
-            const productItem = `
+            const productItem = document.createElement("div");
+            //card.classList.add("product-item");
+            //card.innerHTML = `
+            productItem.innerHTML =`
                 <div class="product-item" data-id="${product.id}">
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
@@ -402,19 +412,24 @@ function displayProducts(productList) {
                     <button onclick="addToCart(${product.id}, '${product.name}', ${price})">Add to Cart</button>
                 </div>
             `;
-            productGrid.innerHTML += productItem;
+            //productGrid.innerHTML += productItem;
+
+            productItem.addEventListener("click", () => showPropertyDetail(product));
+            container.appendChild(productItem);
         });
     } else {
         productGrid.innerHTML = '<p>ningún producto encontrado.</p>';
     }
 }
 
+//aqui solo se debe de a que deben de sali solo los que son de oferta. 
+
 function displayProducts1(data) {
     const container = document.getElementById("productsCards");
     container.innerHTML = ""; // Limpiar contenido previo
 
     
-  
+  //if(data.oferta.includes(true)){
     data.forEach((products) => {
       const price = parseFloat(products.price) || 0; // Si no es válido, se asigna 0
       const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
@@ -436,11 +451,14 @@ function displayProducts1(data) {
       container.appendChild(card);
     });
   }
+
+ // }
   
   // Mostrar los detalles de una propiedad
   function showPropertyDetail(property) {
     const detailSection = document.getElementById("product-detail");
     const listSection = document.getElementById("product-list");
+    const listSection1 = document.getElementById("product-list0");
     const detailContainer = document.getElementById("productDetailContainer");
   
     // Llenar el detalle con la información de la propiedad
@@ -480,6 +498,7 @@ function displayProducts1(data) {
     // Mostrar la sección de detalles y ocultar la lista
     detailSection.style.display = "block";
     listSection.style.display = "none";
+    listSection1.style.display = "none";
   }
 
 
@@ -503,12 +522,39 @@ function displayProducts1(data) {
                 </div>
       `;
       // Agregar evento de clic para mostrar los detalles
-      card2.addEventListener("click", () => showtenderoDetail(products3));
+      card2.addEventListener("click", () => showtenderoDetail1(products3));
       container.appendChild(card2);
     });
   }
 
 
+   /*
+  function displaytenderos1(data) {
+    
+
+    const container = document.getElementById("tenderoCards2");
+
+    // Limpiar contenido previo
+    container.innerHTML = "";
+
+    data.forEach((tendero) => {
+      const card3 = document.createElement("div");
+      card3.innerHTML = `
+        <div class="product-item" data-id="${tendero.id}">
+          <img src="${tendero.image}" alt="${tendero.name}">
+          <h3>${tendero.name}</h3>
+          <p>Ubicación: ${tendero.location}</p>
+        </div>
+      `;
+
+      // Mostrar detalles del tendero
+      card3.addEventListener("click", () => showtenderoDetail1(tendero));
+      container.appendChild(card3);
+    });
+    //alert("aqui ha pasado bien 111")
+   
+  }
+*/
 
   // Mostrar los detalles de un tendero
   function showtenderoDetail(property) {
@@ -526,6 +572,7 @@ function displayProducts1(data) {
     const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
   
     // Llenar el detalle con la información de la propiedad
+    
     detailContainer.innerHTML = `
   
        <div class="virtual-tour">
@@ -560,7 +607,9 @@ function displayProducts1(data) {
      </div>
   
     `;
-  
+    
+
+
     // Mostrar la sección de detalles y ocultar la lista
     detailSection.style.display = "block";
     listSection.style.display = "none";
@@ -569,6 +618,76 @@ function displayProducts1(data) {
     listSection2.style.display = "none";
   }
 
+
+  function showtenderoDetail1(property) {
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    const detailContainer = document.getElementById("tenderoDetailContainer");
+
+
+
+  
+    // Llenar el detalle con la información de la propiedad
+    /*
+    detailContainer.innerHTML = `
+  
+       <div class="virtual-tour">
+                  <h3>TENDERO</h3>
+                  <img src="${property.image}" alt="Foto Portada Tienda">
+              </div>
+  
+  
+              <div class="product-description">
+                  <h2 class="product-title">${property.name}</h2>
+                  <p class="product-text">${property.description}</p>
+                  
+              </div>
+  
+               <div class="virtual-tour">
+                  <h3>Recorrido Virtual en ensamble</h3>
+
+                  
+                  
+                    
+                <div class="product-item" data-id="${products.id}">
+                    <img src="${products.image}" alt="${products.name}">
+                    <h3>${products.name}</h3>
+                    <p>${formattedPrice}</p>
+                    <br>
+                    <button onclick="addToCart(${products.id}, '${products.name}', ${price})">Add to Cart</button>
+                </div>
+                  
+              </div>
+              
+          </div>
+     </div>
+  
+    `;
+    */
+
+detailContainer.innerHTML = `
+
+    <img id="tenderoImage" src="${property.image}" alt="">
+      <h2 id="tenderoName"> ${property.name}</h2>
+      <p id="tenderoDescription"> ${property.description}</p>
+      <p><strong>Ubicación:  </strong>  ${property.location}<span id="tenderoLocation"></span></p>
+      <p><strong>Productos:</strong>  ${property.products}<span id="tenderoProducts"></span></p>
+      <p><strong>Calificación:</strong> ${property.rating} /5 <span id="tenderoRating"></span></p>
+      
+
+      `;
+  
+    // Mostrar la sección de detalles y ocultar la lista  
+    detailSection.style.display = "block";
+    listSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection1.style.display = "none";
+    listSection2.style.display = "none";
+  
+  }
 
 
 
@@ -579,10 +698,12 @@ document.getElementById("backButton").addEventListener("click", () => {
 
     const detailSection = document.getElementById("product-detail");
     const listSection = document.getElementById("product-list");
+    const listSection1 = document.getElementById("product-list0");
   
     detailSection.style.display = "none";
     //listSection.style.display = "block";
     listSection.style.display = 'block'; // 
+    listSection1.style.display = "block";
 
     
   });
@@ -594,7 +715,6 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
-    const detailContainer = document.getElementById("tenderoDetailContainer");
   
 
 
@@ -660,8 +780,6 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection2.style.display = "block";
     detailContainer.style.display= "none";
     contactos.style.display= "block";
-
-
 
   }
 
