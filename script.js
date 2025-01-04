@@ -465,7 +465,7 @@ function displayProducts1(data) {
     detailContainer.innerHTML = `
   
        <div class="virtual-tour">
-                  <h3>"${property.name}"</h3>
+                  <h3>${property.name}</h3>
                   <img src="${property.image}" alt="Foto portada propiedad">
               </div>
   
