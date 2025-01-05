@@ -479,7 +479,7 @@ function displayProducts1(data) {
                <div class="virtual-tour">
                   <h3>Recorrido Virtual en ensamble</h3>
                   
-                      <img src="${property.foto1}" alt="Imagen 1">
+                      <img src="${property.foto1}" alt="Imagen 1" display=none >
                       <img src="${property.foto2}" alt="Imagen 2">
                   
                       <img src="${property.foto3}" alt="Imagen 3">
