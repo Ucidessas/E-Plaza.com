@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //alert("la data fue NO 1111 esogida directamente");
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch("./tenderos.xlsx") // Archivo en la carpeta raíz
       .then((response) => response.arrayBuffer())
@@ -103,10 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
       //alert("la data fue NO 2222 esogida directamente");
   });
 
-
+  /*
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
-/*/que sollo puede ser llamado cuando se utiliza. 
-/
+//que sollo puede ser llamado cuando se utiliza. 
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -171,8 +171,8 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
     }
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
-
 */
+
 
 // Variables globales para el carrito
 let cart = [];
@@ -333,14 +333,16 @@ function searchProducts() {
 }
 function searchProductsoferta() {
     // Obtener el término de búsqueda del input
-    const searchTerm = ["si"];
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const searchTerm1 = ["si"];
     
     // Filtrar los productos que coinciden con el término de búsqueda
-    const filteredProducts = productoferta.filter(product1 => product1.oferta.toLowerCase().includes(searchTerm));
-
-    // Mostrar los productos filtrados
-    displayProducts1(filteredProducts);
+    const filteredProducts = productoferta.filter(product1 => product1.name.toLowerCase().includes(searchTerm));
+    const filteredProducts1 = filteredProducts.filter(product2 => product2.oferta.toLowerCase().includes(searchTerm1));
+    
+    displayProducts1(filteredProducts1);
 }
+
 
 // Función para buscar productos
 function searchtenderos() {
@@ -456,6 +458,8 @@ function displayProducts1(data) {
   
   // Mostrar los detalles de una propiedad
   function showPropertyDetail(property) {
+    const detailSection2 = document.getElementById("tendero-detail");
+    const listSection2 = document.getElementById("tendero-list");
     const detailSection = document.getElementById("product-detail");
     const listSection = document.getElementById("product-list");
     const listSection1 = document.getElementById("product-list0");
@@ -465,10 +469,11 @@ function displayProducts1(data) {
     detailContainer.innerHTML = `
   
        <div class="virtual-tour">
-                  <h3>${property.name}</h3>
+                  <h3>Propiedad</h3>
                   <img src="${property.image}" alt="Foto portada propiedad">
               </div>
   
+              .
   
               <div class="product-description">
                   <h2 class="product-title">${property.name}</h2>
@@ -479,7 +484,7 @@ function displayProducts1(data) {
                <div class="virtual-tour">
                   <h3>Recorrido Virtual en ensamble</h3>
                   
-                      <img src="${property.foto1}" alt="Imagen 1" display=none >
+                      <img src="${property.foto1}" alt="Imagen 1">
                       <img src="${property.foto2}" alt="Imagen 2">
                   
                       <img src="${property.foto3}" alt="Imagen 3">
@@ -499,6 +504,8 @@ function displayProducts1(data) {
     detailSection.style.display = "block";
     listSection.style.display = "none";
     listSection1.style.display = "none";
+    detailSection2.style.display = "none";
+    listSection2.style.display = "none";
   }
 
 
@@ -574,38 +581,17 @@ function displayProducts1(data) {
     // Llenar el detalle con la información de la propiedad
     
     detailContainer.innerHTML = `
-  
-       <div class="virtual-tour">
-                  <h3>TENDERO</h3>
-                  <img src="${property.image}" alt="Foto Portada Tienda">
-              </div>
-  
-  
-              <div class="product-description">
-                  <h2 class="product-title">${property.name}</h2>
-                  <p class="product-text">${property.description}</p>
-                  
-              </div>
-  
-               <div class="virtual-tour">
-                  <h3>Recorrido Virtual en ensamble</h3>
+   <img id="tenderoImage" src="${property.image}" alt="">
+      <h2 id="tenderoName"> ${property.name}</h2>
+      <p id="tenderoDescription"> ${property.description}</p>
+      <p><strong>Ubicación:  </strong>  ${property.location}<span id="tenderoLocation"></span></p>
+      <p><strong>Productos:</strong>  ${property.products}<span id="tenderoProducts"></span></p>
+      <p><strong>Calificación:</strong> ${property.rating} /5 <span id="tenderoRating"></span></p>
+      <br>
+      <br>
 
-                  
-                  
-                    
-                <div class="product-item" data-id="${products.id}">
-                    <img src="${products.image}" alt="${products.name}">
-                    <h3>${products.name}</h3>
-                    <p>${formattedPrice}</p>
-                    <br>
-                    <button onclick="addToCart(${products.id}, '${products.name}', ${price})">Add to Cart</button>
-                </div>
-                  
-              </div>
-              
-          </div>
-     </div>
-  
+
+      
     `;
     
 
@@ -618,6 +604,45 @@ function displayProducts1(data) {
     listSection2.style.display = "none";
   }
 
+  function displayProductstienda(data,tende) {
+    const container = document.getElementById("productsCards2");
+    container.innerHTML = ""; // Limpiar contenido previo
+    //alert("aquei funciono mostrar productos 00011111 en tienda")
+    const searchTerm = tende.tienda;
+    //alert("aquei funciono mostrar productos 1000000001 en tienda")
+    // Filtrar los productos que coinciden con el término de búsqueda
+    const filteredProductstende = data.filter(product0 => product0.tienda.toLowerCase().includes(searchTerm));
+    
+    //alert("aquei funciono mostrar productos 100010101 en tienda")
+    
+  //if(data.oferta.includes(true)){
+    filteredProductstende.forEach((filter) => {
+      const price = parseFloat(filter.price) || 0; // Si no es válido, se asigna 0
+      const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+      
+      const card = document.createElement("div");
+      //card.classList.add("product-item");
+      card.innerHTML = `
+        <div class="product-item" data-id="${filter.id}">
+                    <img src="${filter.image}" alt="${filter.name}">
+                    <h3>${filter.name}</h3>
+                    <br>
+                    <p>${filter.description}</p>
+                    <br>
+                    <p>${formattedPrice}</p>
+                    <br>
+                    <button onclick="addToCart(${filter.id}, '${filter.name}', ${price})">Add to Cart</button>
+                </div>
+      `;
+      //alert("aquei funciono mostrar productos 12020202 en tienda")
+      /* Agregar evento de clic para mostrar los detalles
+      card.addEventListener("click", () => showPropertyDetail(products));
+      container.appendChild(card);
+      */
+      container.appendChild(card);
+    });
+  }
+
 
   function showtenderoDetail1(property) {
     const detailSection = document.getElementById("tendero-detail");
@@ -626,6 +651,8 @@ function displayProducts1(data) {
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
     const detailContainer = document.getElementById("tenderoDetailContainer");
+    const detailSection2 = document.getElementById("productsCards2");
+    
 
 
 
@@ -679,11 +706,16 @@ detailContainer.innerHTML = `
       
 
       `;
+
+      //alert("aquei funciono mostrar productos 000000 en tienda")
+    displayProductstienda(products,property);
+    //alert("aquei funciono mostrar productos 1111 en tienda")
   
     // Mostrar la sección de detalles y ocultar la lista  
     detailSection.style.display = "block";
+    detailSection2.style.display = "block";
     listSection.style.display = "none";
-    detailSection1.style.display = "none";
+    detailSection1.style.display = "none";;
     listSection1.style.display = "none";
     listSection2.style.display = "none";
   
@@ -696,14 +728,22 @@ detailContainer.innerHTML = `
   // Volver a la lista de propiedades
 document.getElementById("backButton").addEventListener("click", () => {
 
-    const detailSection = document.getElementById("product-detail");
-    const listSection = document.getElementById("product-list");
+
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
   
+
+
     detailSection.style.display = "none";
-    //listSection.style.display = "block";
-    listSection.style.display = 'block'; // 
+    detailSection1.style.display = "none";
+    listSection.style.display = "block";
     listSection1.style.display = "block";
+    listSection2.style.display = "block";
+    
 
     
   });
@@ -768,7 +808,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
-    const detailContainer = document.getElementById("tenderoDetailContainer");
+    //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
 
@@ -778,7 +818,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "block";
     listSection1.style.display = "block";
     listSection2.style.display = "block";
-    detailContainer.style.display= "none";
+    //detailContainer.style.display= "none";
     contactos.style.display= "block";
 
   }
@@ -790,7 +830,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
-    const detailContainer = document.getElementById("tenderoDetailContainer");
+    //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
 
@@ -800,7 +840,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "none";
     listSection1.style.display = "block";
     listSection2.style.display = "none";
-    detailContainer.style.display= "none";
+    //detailContainer.style.display= "none";
     contactos.style.display= "none";
   }
   function producoferta(){
@@ -811,7 +851,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
-    const detailContainer = document.getElementById("tenderoDetailContainer");
+    //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
 
@@ -821,7 +861,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "none";
     listSection1.style.display = "none";
     listSection2.style.display = "block";
-    detailContainer.style.display= "none";
+    //detailContainer.style.display= "none";
     contactos.style.display= "none";
 
   }
@@ -834,7 +874,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
-    const detailContainer = document.getElementById("tenderoDetailContainer");
+    //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
 
@@ -844,7 +884,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "block";
     listSection1.style.display = "none";
     listSection2.style.display = "none";
-    detailContainer.style.display= "none";
+    //detailContainer.style.display= "none";
     contactos.style.display= "none";
   }
 
@@ -855,7 +895,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
-    const detailContainer = document.getElementById("tenderoDetailContainer");
+    //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
 
@@ -865,7 +905,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "none";
     listSection1.style.display = "none";
     listSection2.style.display = "none";
-    detailContainer.style.display= "none";
+    //detailContainer.style.display= "none";
     contactos.style.display= "block";
   }
 

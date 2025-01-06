@@ -257,13 +257,14 @@ header .user-login {
 }
 .product-grid3 {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .product-item {
     padding: 20px;
     border: 1px solid #ddd;
+    display: grid;
     text-align: center;
     display: flex; /* Usa Flexbox para centrar contenido */
     flex-direction: column; /* Asegura que los elementos dentro estén en columna */
