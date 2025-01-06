@@ -550,7 +550,7 @@ function showPropertyDetail(property) {
         <p>${formattedPrice}</p>
          <br>
          
-        <button onclick="addToCart(${property.id}, '${property.name}', ${price})" class="product-item button">Add to Cart</button>
+        <button onclick="addToCart(${property.id}, '${property.name}', ${price})" class="product-item">Add to Cart</button>
         
         `;
 
