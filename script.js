@@ -549,9 +549,9 @@ function showPropertyDetail(property) {
         </div>
         <p>${formattedPrice}</p>
          <br>
-         <div class="product-item">
-        <button onclick="addToCart(${property.id}, '${property.name}', ${price})">Add to Cart</button>
-       </div>
+         
+        <button onclick="addToCart(${property.id}, '${property.name}', ${price})" class="product-item button">Add to Cart</button>
+        
         `;
 
     // Mostrar la sección de detalles y ocultar las demás listas
