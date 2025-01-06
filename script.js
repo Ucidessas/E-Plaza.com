@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
-/* que sollo puede ser llamado cuando se utiliza. 
+ //que sollo puede ser llamado cuando se utiliza. 
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -172,7 +172,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
 
- */ //este codigo
+  //este codigo
 
 // Variables globales para el carrito
 let cart = [];
