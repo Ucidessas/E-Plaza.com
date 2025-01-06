@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
-/*que sollo puede ser llamado cuando se utiliza. 
+/* que sollo puede ser llamado cuando se utiliza. 
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -172,7 +172,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
 
-*/ //este codigo
+ */ //este codigo
 
 // Variables globales para el carrito
 let cart = [];
@@ -547,11 +547,11 @@ function showPropertyDetail(property) {
             <h3>Recorrido Virtual en ensamble</h3>
             ${imageHtml}
         </div>
+        <div class="product-item1">
         <p>${formattedPrice}</p>
-         <br>
-         
-        <button onclick="addToCart(${property.id}, '${property.name}', ${price})" class="product-item">Add to Cart</button>
-        
+        <br>
+        <button onclick="addToCart(${property.id}, '${property.name}', ${price})">Add to Cart</button>
+        </div>
         `;
 
     // Mostrar la sección de detalles y ocultar las demás listas
