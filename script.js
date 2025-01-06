@@ -212,10 +212,10 @@ function displayCartItems() {
     cartItemsList.innerHTML = ''; // Limpiar la lista antes de mostrar
     cart.forEach((item, index) => {
         const listItem = document.createElement('li');
-        listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button onclick="removeFromCart(${index})">Remover</button>`;
+        listItem.innerHTML = `${item.name} - $${item.price.toFixed(3)} <button onclick="removeFromCart(${index})">Remover</button>`;
         cartItemsList.appendChild(listItem);
     });
-    document.getElementById('cart-total').innerText = cartTotal.toFixed(2);
+    document.getElementById('cart-total').innerText = cartTotal.toFixed(3);
    
 }
 
