@@ -259,7 +259,73 @@ header .user-login {
   display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
+    
 }
+
+.product-item1 {
+  padding: 20px;
+  border: 1px solid #ddd;
+  display: grid;
+  text-align: center;
+  display: flex; /* Usa Flexbox para centrar contenido */
+  flex-direction: column; /* Asegura que los elementos dentro estén en columna */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  max-height: 800px; /* Define una altura fija para uniformar el tamaño de los contenedores */
+  
+}
+.product-item1 img {
+  /*width: 300px;
+  height: 300px;*/
+  width: 20%; /* Imagen ocupa todo el ancho */
+  height: auto; /* Mantener la proporción */
+  object-fit: cover;
+  border-radius: 20px;
+  padding: 10px 10px; /* Espaciado interno */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  align-items: center;
+}
+.product-item1 img:hover {
+  transform: scale(2); /* Aumenta el tamaño al 200% */
+  box-shadow: 0 100px 160px rgba(0, 0, 0, 0.3);
+  z-index: 20; /* Coloca la imagen agrandada por encima de las demás */
+}
+.product-item1 button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-item1 button:hover {
+  background-color: #45a049;
+}
+.product-item1 h3 {
+  margin: 10px 0;
+  
+
+  font-family: 'Pacifico', cursive; /* Fuente decorativa */
+  font-size: 17px; /* Tamaño de la letra */
+  color: white; /* Color interno de la letra */
+  text-shadow: 
+      2px 2px 4px rgba(0, 0, 0, 0.4), /* Sombra difusa */
+      -2px -2px 0 #3498db, /* Contorno superior izquierdo */
+      2px -2px 0 #3498db,  /* Contorno superior derecho */
+      -2px 2px 0 #3498db,  /* Contorno inferior izquierdo */
+      2px 2px 0 #3498db;   /* Contorno inferior derecho */
+  text-transform: uppercase; /* Convierte la letra en mayúscula */
+  font-weight: bold; /* Asegura que la letra sea gruesa */
+  letter-spacing: 2px; /* Espaciado entre caracteres */
+
+}
+
+.product-item1 p {
+  color: #ffffff;
+}
+
 
 .product-item {
     padding: 20px;
@@ -271,7 +337,9 @@ header .user-login {
     align-items: center; /* Centra horizontalmente */
     justify-content: center; /* Centra verticalmente */
     height: 400px; /* Define una altura fija para uniformar el tamaño de los contenedores */
+    
 }
+
 
 .product-item img {
     width: 100%; /* Asegura que la imagen se ajuste al ancho disponible */

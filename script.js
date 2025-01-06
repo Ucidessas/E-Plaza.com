@@ -623,7 +623,7 @@ function displayProducts1(data) {
       const card = document.createElement("div");
       //card.classList.add("product-item");
       card.innerHTML = `
-        <div class="product-item" data-id="${filter.id}">
+        <div class="product-item1" data-id="${filter.id}">
                     <img src="${filter.image}" alt="${filter.name}">
                     <h3>${filter.name}</h3>
                     <br>
@@ -766,7 +766,45 @@ document.getElementById("backButton").addEventListener("click", () => {
     
   });
 
+  document.getElementById("backButtonf").addEventListener("click", () => {
+
+
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
   
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "block";
+    listSection1.style.display = "block";
+    listSection2.style.display = "block";
+    
+
+    
+  });
+
+  document.getElementById("backButton1f").addEventListener("click", () => {
+    
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+  
+
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "block";
+    listSection1.style.display = "block";
+    listSection2.style.display = "block";
+    
+  });
 
 
   function sendMail() {
