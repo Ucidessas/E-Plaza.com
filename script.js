@@ -544,6 +544,7 @@ function showPropertyDetail(property) {
             <h3>Recorrido Virtual en ensamble</h3>
             ${imageHtml}
         </div>
+        <button onclick="addToCart(${filter.id}, '${filter.name}', ${price})">Add to Cart</button>
     `;
 
     // Mostrar la sección de detalles y ocultar las demás listas
