@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //alert("la data fue NO 2222 esogida directamente");
   });
 
-  /*
+  
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
 //que sollo puede ser llamado cuando se utiliza. 
 document.getElementById("fileInput").addEventListener("change", (event) => {
@@ -171,7 +171,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
     }
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
-*/
+
 
 
 // Variables globales para el carrito
@@ -456,7 +456,7 @@ function displayProducts1(data) {
 
  // }
   
-  // Mostrar los detalles de una propiedad
+  /* Mostrar los detalles de una propiedad
   function showPropertyDetail(property) {
     const detailSection2 = document.getElementById("tendero-detail");
     const listSection2 = document.getElementById("tendero-list");
@@ -507,6 +507,54 @@ function displayProducts1(data) {
     detailSection2.style.display = "none";
     listSection2.style.display = "none";
   }
+*/
+
+function showPropertyDetail(property) {
+    const detailSection2 = document.getElementById("tendero-detail");
+    const listSection2 = document.getElementById("tendero-list");
+    const detailSection = document.getElementById("product-detail");
+    const listSection = document.getElementById("product-list");
+    const listSection1 = document.getElementById("product-list0");
+    const detailContainer = document.getElementById("productDetailContainer");
+
+    // Array dinámico con todas las fotos
+    const fotos = [property.foto1, property.foto2, property.foto3, property.foto4, property.foto5, property.foto6, property.foto7, property.foto8];
+
+    // Generar las imágenes dinámicamente desde el array
+    const imageHtml = fotos
+        .map((foto, index) => {
+            if (foto && foto.trim() !== "") {
+                return `<img src="${foto}" alt="Imagen ${index + 1}" style="margin: 10px; max-width: 100%; height: auto;">`;
+            }
+            return ""; // Si no hay foto, no se genera contenido
+        })
+        .join("");
+
+    // Llenar el detalle con la información de la propiedad
+    detailContainer.innerHTML = `
+        <div class="virtual-tour">
+            <h3>Propiedad</h3>
+            <img src="${property.image}" alt="Foto portada propiedad" style="margin: 10px; max-width: 100%; height: auto;">
+        </div>
+        <div class="product-description">
+            <h2 class="product-title">${property.name}</h2>
+            <p class="product-text">${property.description}</p>
+        </div>
+        <div class="virtual-tour">
+            <h3>Recorrido Virtual en ensamble</h3>
+            ${imageHtml}
+        </div>
+    `;
+
+    // Mostrar la sección de detalles y ocultar las demás listas
+    detailSection.style.display = "block";
+    listSection.style.display = "none";
+    listSection1.style.display = "none";
+    detailSection2.style.display = "none";
+    listSection2.style.display = "none";
+}
+
+
 
 
   function displaytenderos(data) {
@@ -946,6 +994,9 @@ document.getElementById("backButton").addEventListener("click", () => {
     //detailContainer.style.display= "none";
     contactos.style.display= "block";
   }
+
+
+
 
 
 

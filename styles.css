@@ -682,6 +682,10 @@ footer {
   padding: 0;
   display: flex;
   gap: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 0;
 }
 
 /* Estilos de los enlaces */
@@ -767,3 +771,5 @@ footer {
   gap: 20px;
   padding: 20px;
 }
+
+
