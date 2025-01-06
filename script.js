@@ -530,6 +530,9 @@ function showPropertyDetail(property) {
         })
         .join("");
 
+        const price = parseFloat(property.price) || 0; // Si no es válido, se asigna 0
+      const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+
     // Llenar el detalle con la información de la propiedad
     detailContainer.innerHTML = `
         <div class="virtual-tour">
@@ -544,7 +547,9 @@ function showPropertyDetail(property) {
             <h3>Recorrido Virtual en ensamble</h3>
             ${imageHtml}
         </div>
-        <button onclick="addToCart(${filter.id}, '${filter.name}', ${price})">Add to Cart</button>
+        <p>${formattedPrice}</p>
+         <br>
+        <button onclick="addToCart(${property.id}, '${property.name}', ${price})">Add to Cart</button>
     `;
 
     // Mostrar la sección de detalles y ocultar las demás listas
