@@ -674,44 +674,42 @@ footer {
   
 
 
-
-  /* Contenedor del menú */
-.menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 20px;
-  text-align: center;
-  position: sticky;
+nav {
+  background-color: #191c27;
+  /*position: fixed;*/
+  width: 100%;
   top: 0;
-  z-index: 0;
-}
+  z-index: 1000;
 
-/* Estilos de los enlaces */
-.menu a {
   text-decoration: none;
   color: #333;
   font-size: 18px;
   font-weight: bold;
-  position: relative;
   padding: 10px 15px;
   transition: color 0.3s ease;
 }
 
-/* Efecto hover */
-.menu a:hover {
-  color: #ff6347; /* Cambia el color del texto */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
-/* Estilos de los spans */
-.menu a span {
-  position: relative;
-  z-index: 1;
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block;
 }
 
 /* Subrayado animado */
-.menu a:after {
+nav a:after {
   content: '';
   position: absolute;
   bottom: 5px;
@@ -725,13 +723,15 @@ footer {
   z-index: 0;
 }
 
+nav ul li a:hover {
+  border-bottom: 2px solid #fff;
+}
+
 /* Hover animado */
-.menu a:hover:after {
+nav a:hover:after {
   transform: scaleX(1);
   transform-origin: left;
 }
-
-
 
 
 .detail-page {
