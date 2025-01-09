@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //alert("aqui funcionando para la asignacion de variables. parte 1");
       displayProducts(products);
       searchProductsoferta();
+      searchservice();
       //searchProducts();;
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
