@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
-/* que sollo puede ser llamado cuando se utiliza. 
+/*  que sollo puede ser llamado cuando se utiliza. 
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -129,6 +129,7 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
       //alert("aqui funcionando para la asignacion de variables. parte 1");
       displayProducts(products);
       searchProductsoferta();
+      searchservice();
       //searchProducts();
     };
 
@@ -172,7 +173,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
 
- */ //este codigo
+*/  //este codigo
 
 // Variables globales para el carrito
 let cart = [];
@@ -343,6 +344,20 @@ function searchProductsoferta() {
     displayProducts1(filteredProducts1);
 }
 
+function searchservice() {
+  // Obtener el término de búsqueda del input
+  const searchTerm = document.getElementById('search-input').value.toLowerCase();
+  const searchTerm1 = ["si"];
+    
+    // Filtrar los productos que coinciden con el término de búsqueda
+    const filteredProducts = productoferta.filter(product1 => product1.name.toLowerCase().includes(searchTerm));
+    const filteredProducts1 = filteredProducts.filter(product2 => product2.service.toLowerCase().includes(searchTerm1));
+    
+  //alert("aqui funcionando el filtrado");
+  // Mostrar los productos filtrados
+  displayservice(filteredProducts1);
+}
+
 
 // Función para buscar productos
 function searchtenderos() {
@@ -402,6 +417,7 @@ function displayProducts(productList) {
             // Validar y convertir el precio a un número
             const price = parseFloat(product.price) || 0; // Si no es válido, se asigna 0
             const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+            
             const productItem = document.createElement("div");
             //card.classList.add("product-item");
             //card.innerHTML = `
@@ -453,6 +469,48 @@ function displayProducts1(data) {
       container.appendChild(card);
     });
   }
+
+
+  function displayservice(productList) {
+    //const productGrid = document.querySelector('.product-grid');
+    const container = document.getElementById("productservice");
+
+   // const container = document.getElementById("propertyCards");
+
+   container.innerHTML = '';
+    
+    // Limpiar los productos actuales en la cuadrícula
+    //productGrid.innerHTML = '';
+    
+    // Mostrar los productos filtrados
+    if (productList.length > 0) {
+
+
+        productList.forEach(product => {
+            // Validar y convertir el precio a un número
+            const price = parseFloat(product.price) || 0; // Si no es válido, se asigna 0
+            const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+            const productItem = document.createElement("div");
+            //card.classList.add("product-item");
+            //card.innerHTML = `
+            productItem.innerHTML =`
+                <div class="product-item" data-id="${product.id}">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${formattedPrice}</p>
+                    <br>
+                    <button onclick="addToCart(${product.id}, '${product.name}', ${price})">Add to Cart</button>
+                </div>
+            `;
+            //productGrid.innerHTML += productItem;
+
+            productItem.addEventListener("click", () => showPropertyDetail(product));
+            container.appendChild(productItem);
+        });
+    } else {
+        productGrid.innerHTML = '<p>ningún producto encontrado.</p>';
+    }
+}
 
  // }
   
@@ -512,6 +570,7 @@ function displayProducts1(data) {
 function showPropertyDetail(property) {
     const detailSection2 = document.getElementById("tendero-detail");
     const listSection2 = document.getElementById("tendero-list");
+    const listSection3 = document.getElementById("product-servi");
     const detailSection = document.getElementById("product-detail");
     const listSection = document.getElementById("product-list");
     const listSection1 = document.getElementById("product-list0");
@@ -560,6 +619,7 @@ function showPropertyDetail(property) {
     listSection1.style.display = "none";
     detailSection2.style.display = "none";
     listSection2.style.display = "none";
+    listSection3.style.display = "none";
 }
 
 
@@ -626,6 +686,7 @@ function showPropertyDetail(property) {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
+    const listSection3 = document.getElementById("product-servi");
     const detailContainer = document.getElementById("tenderoDetailContainer");
 
 
@@ -658,6 +719,7 @@ function showPropertyDetail(property) {
     detailSection1.style.display = "none";
     listSection1.style.display = "none";
     listSection2.style.display = "none";
+    listSection3.style.display = "none";
   }
 
   function displayProductstienda(data,tende) {
@@ -708,8 +770,8 @@ function showPropertyDetail(property) {
     const listSection2 = document.getElementById("product-list");
     const detailContainer = document.getElementById("tenderoDetailContainer");
     const detailSection2 = document.getElementById("productsCards2");
+    const listSection3 = document.getElementById("product-servi");
     
-
 
 
   
@@ -774,6 +836,7 @@ detailContainer.innerHTML = `
     detailSection1.style.display = "none";;
     listSection1.style.display = "none";
     listSection2.style.display = "none";
+    listSection3.style.display = "none";
   
   }
 
@@ -791,6 +854,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
+    const listSection3 = document.getElementById("product-servi");
   
 
 
@@ -799,6 +863,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "block";
     listSection1.style.display = "block";
     listSection2.style.display = "block";
+    listSection3.style.display = "block";
     
 
     
@@ -811,6 +876,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
+    const listSection3 = document.getElementById("product-servi");
   
 
 
@@ -819,6 +885,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "block";
     listSection1.style.display = "block";
     listSection2.style.display = "block";
+    listSection3.style.display = "block";
     
   });
 
@@ -831,6 +898,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
+    const listSection3 = document.getElementById("product-servi");
   
 
 
@@ -839,6 +907,8 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "block";
     listSection1.style.display = "block";
     listSection2.style.display = "block";
+    listSection3.style.display = "block";
+    
     
 
     
@@ -851,6 +921,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     const detailSection1 = document.getElementById("product-detail");
     const listSection1 = document.getElementById("product-list0");
     const listSection2 = document.getElementById("product-list");
+    const listSection3 = document.getElementById("product-servi");
   
 
 
@@ -859,6 +930,7 @@ document.getElementById("backButton").addEventListener("click", () => {
     listSection.style.display = "block";
     listSection1.style.display = "block";
     listSection2.style.display = "block";
+    listSection3.style.display = "block";
     
   });
 
@@ -904,7 +976,9 @@ document.getElementById("backButton").addEventListener("click", () => {
     const listSection2 = document.getElementById("product-list");
     //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
-  
+
+    const listSection3 = document.getElementById("product-servi");
+    listSection3.style.display = "block";
 
 
     detailSection.style.display = "none";
@@ -927,6 +1001,8 @@ document.getElementById("backButton").addEventListener("click", () => {
     //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
+    const listSection3 = document.getElementById("product-servi");
+    listSection3.style.display = "none";
 
 
     detailSection.style.display = "none";
@@ -948,13 +1024,37 @@ document.getElementById("backButton").addEventListener("click", () => {
     //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
-
+    const listSection3 = document.getElementById("product-servi");
+    listSection3.style.display = "none";
 
     detailSection.style.display = "none";
     detailSection1.style.display = "none";
     listSection.style.display = "none";
     listSection1.style.display = "none";
     listSection2.style.display = "block";
+    //detailContainer.style.display= "none";
+    contactos.style.display= "none";
+
+  }
+  function servicios(){
+
+
+    const detailSection = document.getElementById("tendero-detail");
+    const listSection = document.getElementById("tendero-list");
+    const detailSection1 = document.getElementById("product-detail");
+    const listSection1 = document.getElementById("product-list0");
+    const listSection2 = document.getElementById("product-list");
+    //const detailContainer = document.getElementById("tenderoDetailContainer");
+    const contactos = document.getElementById("contacto");
+  
+    const listSection3 = document.getElementById("product-servi");
+    listSection3.style.display = "block";
+
+    detailSection.style.display = "none";
+    detailSection1.style.display = "none";
+    listSection.style.display = "none";
+    listSection1.style.display = "none";
+    listSection2.style.display = "none";
     //detailContainer.style.display= "none";
     contactos.style.display= "none";
 
@@ -971,7 +1071,8 @@ document.getElementById("backButton").addEventListener("click", () => {
     //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
-
+    const listSection3 = document.getElementById("product-servi");
+    listSection3.style.display = "none";
 
     detailSection.style.display = "none";
     detailSection1.style.display = "none";
@@ -992,7 +1093,8 @@ document.getElementById("backButton").addEventListener("click", () => {
     //const detailContainer = document.getElementById("tenderoDetailContainer");
     const contactos = document.getElementById("contacto");
   
-
+    const listSection3 = document.getElementById("product-servi");
+    listSection3.style.display = "none";
 
     detailSection.style.display = "none";
     detailSection1.style.display = "none";

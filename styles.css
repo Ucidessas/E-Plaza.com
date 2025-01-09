@@ -336,7 +336,8 @@ header .user-login {
     flex-direction: column; /* Asegura que los elementos dentro estén en columna */
     align-items: center; /* Centra horizontalmente */
     justify-content: center; /* Centra verticalmente */
-    height: 400px; /* Define una altura fija para uniformar el tamaño de los contenedores */
+    height: 500px; /* Define una altura fija para uniformar el tamaño de los contenedores */
+    
     
 }
 

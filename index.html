@@ -67,11 +67,12 @@
                 <li><a onclick="inicio()"><span>Busqueda</span></a></li>
                 <li><a onclick="productventa()"><span>Productos de Venta</span></a></li>
                 <li><a onclick="producoferta()"><span>Productos de Oferta</span></a></li>
+                <li><a onclick="servicios()"><span>Servicios</span></a></li>
                 <li><a onclick="tenderos()"><span>Tenderos</span></a></li>
                 <li><a onclick="contacto()"><span>Contacto</span></a></li>
                 </ul>
         </nav>
-
+        
 <!--
         
         <ul>
@@ -119,12 +120,27 @@
         </div>
     </section>
 
+
+    <section id="product-servi" class="products">
+        <h2>Servicios locales de la Comunidad Populares</h2>
+        <div id="productservice" class="product-grid1">
+            <div class="product-item" id="productservi" >
+                <img src="https://via.placeholder.com/150" alt="Product 1" />
+                <h3>Busqueda</h3>
+                <p>$000.00</p>
+                <button onclick="searchservice()">
+                    BUSCAR EN TODOS LOS PRODUCTOS OFERTA
+                </button>
+            </div>
+        </div>
+    </section>
+
     <section id="product-detail" style="display: none;">
-        <button id="backButton" class="super-button">Volver a la lista Productos</button>
+        <button id="backButton" class="super-button">Volver a la lista Productos y Servicios</button>
         <div id="productDetailContainer" class="virtual-tour">
           <!-- Detalles de la propiedad seleccionada se mostrarán aquí -->
         </div>
-        <button id="backButtonf" class="super-button">Volver a la lista Productos</button>
+        <button id="backButtonf" class="super-button">Volver a la lista Productos y Servicios</button>
       </section>
        
 
@@ -136,14 +152,27 @@
         <button onclick="toggleCart()">Cerrar</button>
     </div>
 
- <!--
+
+
+    
+    <!--
+    <section id="productservi-detail" style="display: none;">
+        <button id="backButton3" class="super-button">Volver a la lista Servicios</button>
+        <div id="productserviDetailContainer" class="virtual-tour">
+           Detalles de la propiedad seleccionada se mostrarán aquí 
+        </div>
+        <button id="backButtonf" class="super-button">Volver a la lista Servicios</button>
+      </section>
+    -->
+
+<!--
     <section id="upload-section1">
         <h2>Subir Archivo de tenderos</h2>
         <input type="file" id="fileInput1" accept=".xlsx, .xls" />
       </section>
 
 
-    perfiles de venta tenderos o vendedor.      -->
+     perfiles de venta tenderos o vendedor.      -->
      <section id="tendero-list" class="products">
         <h2>Perfiles de los vendedores</h2>
         <div id="tenderoCards" class="product-grid2">
@@ -176,6 +205,10 @@
 </section>
 -->
 
+
+
+
+
 <section id="tendero-detail" style="display: none;">
     <button id="backButton1" class="super-button">Volver a la lista de Tenderos</button>
     <div id="tenderoDetailContainer" class="virtual-tour">
@@ -189,6 +222,9 @@
     </div>
     <button id="backButton1f" class="super-button">Volver a la lista de Tenderos</button>
   </section>
+
+
+  
 
 
 
