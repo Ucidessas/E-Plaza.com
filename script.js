@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 // este codigo de escuchar no funciona cuando se quiere activas con el login ya que poseee un error 
-//  que sollo puede ser llamado cuando se utiliza. 
+/*  que sollo puede ser llamado cuando se utiliza. 
 document.getElementById("fileInput").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -174,7 +174,7 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
 
-  //este codigo
+ */ //este codigo
 
 // Variables globales para el carrito
 let cart = [];
@@ -396,7 +396,7 @@ function login1() {
 }
 
 
-
+/*
 // mistrar para todos los productos sin importar que sean de oferta o no. 
 
 function displayProducts(productList) {
@@ -441,34 +441,84 @@ function displayProducts(productList) {
     }
 }
 
+*/
+
+function displayProducts(productList) {
+  const container = document.getElementById("productsCards0");
+  container.innerHTML = '';
+
+  // Verificar si hay productos en la lista
+  if (productList.length > 0) {
+      // Mezclar aleatoriamente la lista de productos
+      const shuffledProducts = productList.sort(() => Math.random() - 0.5);
+
+      // Seleccionar los primeros 15 productos (o todos si hay menos de 15)
+      const selectedProducts = shuffledProducts.slice(0, 28);
+
+      // Mostrar los productos seleccionados
+      selectedProducts.forEach(product => {
+          const price = parseFloat(product.price) || 0; // Validar y convertir el precio a número
+          const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+
+          const productItem = document.createElement("div");
+          productItem.innerHTML = `
+              <div class="product-item" data-id="${product.id}">
+                  <img src="${product.image}" alt="${product.name}">
+                  <h3>${product.name}</h3>
+                  <p>${formattedPrice}</p>
+                  <br>
+                  <button onclick="addToCart(${product.id}, '${product.name}', ${price})">Add to Cart</button>
+              </div>
+          `;
+
+          // Agregar evento para mostrar detalles del producto
+          productItem.addEventListener("click", () => showPropertyDetail(product));
+          container.appendChild(productItem);
+      });
+  } else {
+      container.innerHTML = '<p>Ningún producto encontrado.</p>';
+  }
+}
+
 //aqui solo se debe de a que deben de sali solo los que son de oferta. 
 
 function displayProducts1(data) {
-    const container = document.getElementById("productsCards");
-    container.innerHTML = ""; // Limpiar contenido previo
 
-    
-  //if(data.oferta.includes(true)){
-    data.forEach((products) => {
-      const price = parseFloat(products.price) || 0; // Si no es válido, se asigna 0
-      const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
-      
-      const card = document.createElement("div");
-      //card.classList.add("product-item");
-      card.innerHTML = `
-        <div class="product-item" data-id="${products.id}">
-                    <img src="${products.image}" alt="${products.name}">
-                    <h3>${products.name}</h3>
-                    <p>${formattedPrice}</p>
-                    <br>
-                    <button onclick="addToCart(${products.id}, '${products.name}', ${price})">Add to Cart</button>
-                </div>
-      `;
-  
-      // Agregar evento de clic para mostrar los detalles
-      card.addEventListener("click", () => showPropertyDetail(products));
-      container.appendChild(card);
-    });
+
+    const container = document.getElementById("productsCards");
+  container.innerHTML = '';
+
+  // Verificar si hay productos en la lista
+  if (data.length > 0) {
+      // Mezclar aleatoriamente la lista de productos
+      const shuffledProducts = data.sort(() => Math.random() - 0.5);
+
+      // Seleccionar los primeros 15 productos (o todos si hay menos de 12)
+      const selectedProducts = shuffledProducts.slice(0, 12);
+
+      // Mostrar los productos seleccionados
+      selectedProducts.forEach(product => {
+          const price = parseFloat(product.price) || 0; // Validar y convertir el precio a número
+          const formattedPrice = `$${price.toFixed(3)}`; // Formatear el precio
+
+          const productItem = document.createElement("div");
+          productItem.innerHTML = `
+              <div class="product-item" data-id="${product.id}">
+                  <img src="${product.image}" alt="${product.name}">
+                  <h3>${product.name}</h3>
+                  <p>${formattedPrice}</p>
+                  <br>
+                  <button onclick="addToCart(${product.id}, '${product.name}', ${price})">Add to Cart</button>
+              </div>
+          `;
+
+          // Agregar evento para mostrar detalles del producto
+          productItem.addEventListener("click", () => showPropertyDetail(product));
+          container.appendChild(productItem);
+      });
+  } else {
+      container.innerHTML = '<p>Ningún producto encontrado.</p>';
+  }
   }
 
 
