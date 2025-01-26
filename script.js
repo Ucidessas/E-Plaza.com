@@ -174,9 +174,9 @@ document.getElementById("fileInput1").addEventListener("change", (event) => {
    // alert("aqui funcionando para la asignacion de variables. aqui salio de la parte 2 y ahora la parte 3");
   });
 
- */ //este codigo
+*/  //este codigo
 
-// Variables globales para el carrito
+/* Variables globales para el carrito
 let cart = [];
 let cartTotal = 0;
 let loggedIn = false;
@@ -229,6 +229,143 @@ function removeFromCart(index) {
     updateCartCount();
     displayCartItems();
 }
+
+
+// Función para finalizar compra
+function checkout() {
+  if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+  }else if (!loggedIn) {
+      alert("Please login again to proceed with checkout. Por favor inicie con las credenciales"); 
+      toggleCart();
+  }else {
+      alert(`Checkout complete! Total: $${cartTotal.toFixed(3)}`);
+      cart = [];
+      cartTotal = 0;
+      //updateCartUI();
+      updateCartCount();
+      toggleCart();
+  }
+}
+*/
+
+// Variables globales para el carrito
+// Variables globales para el carrito
+let cart = [];
+let cartTotal = 0;
+let loggedIn = false;
+
+// Función para agregar productos al carrito
+function addToCart(id, name, price) {
+    const existingProduct = cart.find(item => item.id === id);
+    if (existingProduct) {
+        existingProduct.quantity++;
+    } else {
+        cart.push({ id, name, price, quantity: 1 });
+    }
+    cartTotal += price;
+    updateCartCount();
+    displayCartItems();
+    alert(`${name} lo haz añadido al Carrito!`);
+}
+
+// Función para actualizar el contador del carrito
+function updateCartCount() {
+    document.getElementById('cart-count').innerText = cart.length;
+}
+
+// Función para mostrar u ocultar el modal del carrito
+function toggleCart() {
+    const cartModal = document.getElementById('cartModal');
+    if (cartModal.style.display === 'none' || cartModal.style.display === '') {
+        cartModal.style.display = 'block';
+        displayCartItems();
+    } else {
+        cartModal.style.display = 'none';
+    }
+}
+
+// Función para mostrar los elementos del carrito
+function displayCartItems() {
+    const cartItemsList = document.getElementById('cart-items');
+    cartItemsList.innerHTML = ''; // Limpiar la lista antes de mostrar
+
+    cart.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            ${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(3)}
+            <button onclick="removeFromCart(${index})">Remover</button>
+        `;
+        cartItemsList.appendChild(listItem);
+    });
+
+    document.getElementById('cart-total').innerText = cartTotal.toFixed(3);
+}
+
+// Función para eliminar productos del carrito
+function removeFromCart(index) {
+    const item = cart[index];
+    cartTotal -= item.price * item.quantity;
+    cart.splice(index, 1);
+    updateCartCount();
+    displayCartItems();
+}
+
+// Función para generar el mensaje de WhatsApp con emojis
+function generateWhatsAppMessage() {
+  let message = "🌟 *¡Hola! Me gustaría realizar el siguiente pedido:* 🌟\n\n";
+  
+  // Agregar los productos del carrito al mensaje
+  cart.forEach(product => {
+      message += `- 🛒 *${product.name}* (Cantidad: ${product.quantity}): $${(product.price * product.quantity).toFixed(3)}\n`;
+  });
+
+  // Agregar el total al mensaje
+  message += `\n💰 *Total a pagar:* $${cartTotal.toFixed(3)}\n`;
+
+  // Solicitar pasos para el pago y preguntar sobre envío
+  message += "\n📦 *¿Me gustaría que el pedido sea enviado?* ¿Esto tiene un costo adicional ?. Por favor, indíqueme su respuesta.\n";
+
+  message += "\n💳 *Y Por favor me podría decir ¿Cuáles son los Métodos de pago disponibles ? Gracias*\n";
+
+  message += "\n \n📝 *Quedo atento a su respuesta para confirmar el pedido.*\n";
+  message += "¡Gracias por tu Atención! 🙏";
+
+  return message;
+}
+
+
+// Función para finalizar compra y redirigir a WhatsApp
+function checkout() {
+    if (cart.length === 0) {
+        alert('El carrito está vacío.');
+        return;
+    }
+
+    if (!loggedIn) {
+        alert("Por favor, inicia sesión para proceder con el pago.");
+        toggleCart();
+        toggleLoginForm()
+        return;
+    }
+
+    // Generar el mensaje de WhatsApp
+    const message = encodeURIComponent(generateWhatsAppMessage());
+    const phoneNumber = "3118208928"; // Cambia al número de WhatsApp del negocio
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    // Redirigir al cliente a WhatsApp y enviar el mensaje automáticamente
+    window.open(whatsappURL, "_blank");
+
+    // Limpiar el carrito después de enviar el pedido
+    cart = [];
+    cartTotal = 0;
+    updateCartCount();
+    displayCartItems();
+}
+
+
 
 
 
@@ -302,23 +439,6 @@ function toggleLoginForm() {
 // Función de checkout
 
 
-// Función para finalizar compra
-function checkout() {
-    if (cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-    }else if (!loggedIn) {
-        alert("Please login again to proceed with checkout. Por favor inicie con las credenciales"); 
-        toggleCart();
-    }else {
-        alert(`Checkout complete! Total: $${cartTotal.toFixed(3)}`);
-        cart = [];
-        cartTotal = 0;
-        //updateCartUI();
-        updateCartCount();
-        toggleCart();
-    }
-}
 
 
 // Función para buscar productos
