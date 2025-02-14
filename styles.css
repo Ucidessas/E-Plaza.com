@@ -307,7 +307,7 @@ header .user-login {
   margin: 10px 0;
   
 
-  font-family: 'Pacifico', cursive; /* Fuente decorativa */
+  font-family: 'Poppins', sans-serif;/* Fuente decorativa */
   font-size: 17px; /* Tamaño de la letra */
   color: white; /* Color interno de la letra */
   text-shadow: 
@@ -318,7 +318,7 @@ header .user-login {
       2px 2px 0 #3498db;   /* Contorno inferior derecho */
   text-transform: uppercase; /* Convierte la letra en mayúscula */
   font-weight: bold; /* Asegura que la letra sea gruesa */
-  letter-spacing: 2px; /* Espaciado entre caracteres */
+  letter-spacing: 3px; /* Espaciado entre caracteres */
 
 }
 
@@ -357,7 +357,7 @@ header .user-login {
     margin: 10px 0;
     
 
-    font-family: 'Pacifico', cursive; /* Fuente decorativa */
+    font-family: 'Poppins', sans-serif;/* Fuente decorativa */
     font-size: 17px; /* Tamaño de la letra */
     color: white; /* Color interno de la letra */
     text-shadow: 
@@ -368,7 +368,7 @@ header .user-login {
         2px 2px 0 #3498db;   /* Contorno inferior derecho */
     text-transform: uppercase; /* Convierte la letra en mayúscula */
     font-weight: bold; /* Asegura que la letra sea gruesa */
-    letter-spacing: 2px; /* Espaciado entre caracteres */
+    letter-spacing: 3px; /* Espaciado entre caracteres */
 
   }
   
